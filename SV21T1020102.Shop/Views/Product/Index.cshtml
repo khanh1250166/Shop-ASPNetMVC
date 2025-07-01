@@ -1,0 +1,105 @@
+﻿@model SV21T1020102.Shop.Models.ProductsSearchInput
+
+@{
+    ViewBag.Title = "Sản phẩm";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="category-search">
+                    <form id="frmSearchInput" action="~/Product/Search" method="get" class="form-inline">
+                        <input type="hidden" name="@nameof(Model.PageSize)" value="@Model.PageSize" />
+                        <div class="form-group">
+                            <input type="text" name="@nameof(Model.SearchValue)" value="@Model.SearchValue" class="form-control" placeholder="Search" style="width: 100%;">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 10px;margin-bottom:10px" autofocus>Search</button>
+
+                        <div class="left-sidebar">
+                            <h2>Category</h2>
+                            <div class="panel-group category-products">
+                                <!-- category-products -->
+                                @foreach (var item in SV21T1020102.BusineesLayers.CommonDataService.ListNameCategory())
+                                {
+                                    <div class="panel panel-default" style="color:#FE980F">
+                                        <label>
+                                            <input type="radio" name="@nameof(Model.CategoryID)" value="@item.CategoryID"
+                                            @(item.CategoryID == Model.CategoryID ? "checked" : "") />
+                                            @item.CategoryName
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="price-range">
+                                <h2>Price Range</h2>
+                                <div class="row-sm-1" style="color:#FE980F">
+                                    <label>Giá từ:</label>
+                                    <input type="text" class="form-control number-separator" name="@nameof(Model.MinPrice)" value="@Model.MinPrice.ToString("N0")">
+                                </div>
+                                <div class="row-sm-1" style="color:#FE980F">
+                                    <label>đến:</label>
+                                    <input type="text" class="form-control number-separator" name="@nameof(Model.MaxPrice)" value="@Model.MaxPrice.ToString("N0")">
+                                </div>
+                            </div><!-- /price-range -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Hiển thị kết quả tìm kiếm -->
+            <div id="searchResult"></div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Xử lý sự kiện khi radio button được chọn
+            $("input[type='radio'][name='@nameof(Model.CategoryID)']").click(function () {
+                // Nếu radio button đã được chọn, kiểm tra và bỏ chọn nó
+                if (this.checked) {
+                    var isChecked = $(this).data('checked');
+                    if (isChecked) {
+                        $(this).prop('checked', false);  // Bỏ chọn radio nếu đã được chọn trước đó
+                        $(this).removeData('checked');  // Xóa thuộc tính 'checked' để tránh trạng thái bật lại
+                    } else {
+                        $(this).data('checked', true);  // Đánh dấu radio này là đã được chọn
+                    }
+                }
+            });
+
+            // Tìm kiếm khi trang được tải
+            doSearch(@Model.Page);
+
+            // Sự kiện khi form tìm kiếm được gửi
+            $("#frmSearchInput").submit(function (e) {
+                e.preventDefault();  // Ngừng hành động mặc định của form (reload trang)
+                doSearch(1);  // Gửi dữ liệu tìm kiếm và bắt đầu từ trang 1
+            });
+        });
+
+        // Hàm tìm kiếm theo trang và các điều kiện tìm kiếm
+        function doSearch(page) {
+            var searchCondition = $("#frmSearchInput").serializeArray();  // Lấy tất cả các dữ liệu từ form
+            searchCondition.push({ name: "page", value: page });  // Thêm trang vào để phân trang
+            var action = $("#frmSearchInput").prop("action");
+            var method = $("#frmSearchInput").prop("method");
+
+            $.ajax({
+                url: action,
+                type: method,
+                data: searchCondition,
+                success: function (data) {
+                    // Hiển thị kết quả tìm kiếm vào div #searchResult
+                    $("#searchResult").html(data);
+                },
+                error: function () {
+                    alert("Đã có lỗi xảy ra khi tìm kiếm.");
+                }
+            });
+        }
+    </script>
+}

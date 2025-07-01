@@ -1,0 +1,76 @@
+﻿@model SV21T1020102.Shop.Models.OrderResult
+@{
+    Layout = null;
+    var userData = User.GetUserData();
+}
+<div class="row">
+<div class="col-md-4">
+    <div class="section-title">THÔNG TIN TÀI KHOẢN</div>
+    <p>Xin chào, <span style="color: #f57c00;">@userData.CustomerName</span></p>
+    <div class="section-title">THÔNG TIN KHÁCH HÀNG</div>
+    <div class="info-item"><i class="glyphicon glyphicon-user"></i> <strong>Họ tên:</strong> @userData.CustomerName</div>
+    <div class="info-item"><i class="glyphicon glyphicon-earphone"></i> <strong>Số ĐT:</strong> @userData.Phone</div>
+    <div class="info-item"><i class="glyphicon glyphicon-map-marker"></i> <strong>Địa chỉ:</strong> @userData.Address</div>
+</div>
+<div class="col-md-8">
+    <div class="section-title">ĐƠN HÀNG CỦA BẠN</div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Thời gian đặt</th>
+              
+                <th>Địa chỉ nhận</th>
+                <th>Thời gian duyệt</th>
+                <th>Shipper</th>
+                <th>Thời gian Ship</th>
+                <th>Thời gian Hoàn thành</th>
+                <th>Tình trạng</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Data == null || !Model.Data.Any())
+            {
+                <tr>
+                    <td colspan="5">Không có đơn hàng nào.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var order in Model.Data)
+                {
+                    <tr>
+                        <td>@order.OrderTime</td>
+                      
+                        <td>@order.DeliveryAddress</td>
+                        <td>@order.AcceptTime</td>
+                        <td>@order.ShipperName</td>
+                        <td>@order.ShippedTime</td>
+                        <td>@order.FinishedTime</td>
+                        <td>@(order.StatusDescription)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+        <div class="text-center">
+            <ul class="pagination">
+                @for (int p = 1; p <= Model.PageCount; p++)
+                {
+                    if (p == Model.Page)
+                    {
+                        <!-- Trang hiện tại (active) với nền màu cam và chữ trắng -->
+                        <li class="active">
+                            <a href="#" style="color: white;">@p</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <!-- Các trang khác có màu chữ cam và viền cam -->
+                        <li><a href="javascript:;" onclick="doSearch(@p)" style="color: #f57c00; border: 1px solid #f57c00;">@p</a></li>
+                    }
+                }
+            </ul>
+        </div>
+</div>
+</div>

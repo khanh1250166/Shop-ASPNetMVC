@@ -1,0 +1,51 @@
+﻿@model SV21T1020102.Shop.Models.ProductSearchResult
+@{
+    Layout = null;
+}
+
+<div class="col-sm-9 padding-right">
+    <div class="features_items">
+        <!--features_items-->
+        <h2 class="title text-center">Features Items</h2>
+        <div class="row">
+            @foreach (var item in Model.Data)
+            {
+                    <div class="col-sm-3 col-xs-6" style="width:200px;height:350px">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <!-- Sử dụng lớp thumbnail và img-responsive của Bootstrap -->
+                                    <div class="thumbnail">
+                                        <a href="~/Product/Details/@item.ProductId">
+                                            <img src="http://localhost:18308/images/Product/@(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)"
+                                                 alt="@item.ProductName"
+                                                 class="img-responsive" />
+                                        </a>
+                                    </div>
+
+                                <h2>@item.Price.ToString("N0")</h2>
+                                    <p>@item.ProductName</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>                            
+            }
+        </div>
+        <div class="pagination-wrapper text-center">
+            <ul class="pagination">
+                @for (int p = 1; p <= Model.PageCount; p++)
+                {
+                    if (p == Model.Page)
+                    {
+                        <li class="active"><a href="#">@p</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;" onclick="doSearch(@p)">@p</a></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

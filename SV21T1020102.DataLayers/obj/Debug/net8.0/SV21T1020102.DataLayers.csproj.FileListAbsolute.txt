@@ -1,0 +1,15 @@
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\bin\Debug\net8.0\SV21T1020102.DataLayers.deps.json
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\bin\Debug\net8.0\SV21T1020102.DataLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\bin\Debug\net8.0\SV21T1020102.DataLayers.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\bin\Debug\net8.0\SV21T1020102.DomainModels.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\bin\Debug\net8.0\SV21T1020102.DomainModels.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.csproj.AssemblyReference.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.AssemblyInfoInputs.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.AssemblyInfo.cs
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.csproj.CoreCompileInputs.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T102.3DA8FC53.Up2Date
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\refint\SV21T1020102.DataLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\SV21T1020102.DataLayers.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.DataLayers\obj\Debug\net8.0\ref\SV21T1020102.DataLayers.dll

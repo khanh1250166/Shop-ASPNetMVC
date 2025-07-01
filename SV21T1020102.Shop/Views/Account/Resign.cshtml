@@ -1,0 +1,141 @@
+﻿@model SV21T1020102.DomainModels.Customer
+@{
+    ViewBag.Title = "Đăng ký";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tài khoản</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .account-management {
+            margin: 50px auto;
+            max-width: 600px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .account-management h3 {
+                text-align: center;
+                margin-bottom: 30px;
+                font-weight: bold;
+            }
+
+        .btn-primary {
+            background-color: #0275d8;
+            border-color: #0275d8;
+        }
+
+            .btn-primary:hover {
+                background-color: #025aa5;
+                border-color: #025aa5;
+            }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .user-info p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .user-info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container account-management">
+        <h3>Đăng kỳ tài khoản</h3>
+
+            <form action="~/Account/Resign" method="post" class="form-horizontal" style="margin-top: 20px;">           
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Họ và Tên:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="CustomerName" class="form-control" value="@Model.CustomerName">
+                    </div>
+                @Html.ValidationMessage(nameof(Model.CustomerName), new { @style = "color: #e74c3c" })
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">Tên giao dịch:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="ContactName" class="form-control" value="@Model.ContactName">
+                    </div>
+                @Html.ValidationMessage(nameof(Model.ContactName), new { @style = "color: #e74c3c" })
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">Số điện thoại:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="@nameof(Model.Phone)" class="form-control" value="@Model.Phone">
+                    </div>
+                @Html.ValidationMessage(nameof(Model.Phone), new { @style = "color: #e74c3c" })
+                </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Tỉnh thành</label>
+                <div class="col-sm-9">
+                    <select class=" form-control" name="@nameof(Model.Province)">
+                        <option value="">--Chọn tỉnh thành--</option>
+                        @foreach (var province in SV21T1020102.BusineesLayers.CommonDataService.ListOfProvinces())
+                        {
+                            if (province.ProvinceName == Model.Province)
+                            {
+                                <option selected value="@province.ProvinceName">@province.ProvinceName</option>
+                            }
+                            else
+                            {
+                                <option value="@province.ProvinceName">@province.ProvinceName</option>
+                            }
+                        }
+                    </select>
+                </div>               
+                @Html.ValidationMessage(nameof(Model.Province), new { @style = "color: #e74c3c" })
+            </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                    <input type="text" name="@nameof(Model.Email)" class="form-control" value="@Model.Email">
+                    </div>
+                @Html.ValidationMessage(nameof(Model.Email), new { @style = "color: #e74c3c" })
+                </div>
+            <div class="form-group">
+                <label  class="col-sm-3 control-label">Mật khẩu:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="@nameof(Model.Password)" class="form-control" value="@Model.Password">
+                </div>
+                @Html.ValidationMessage(nameof(Model.Password), new { @style = "color: #e74c3c" })
+            </div>
+            <div class="form-group">
+                <label  class="col-sm-3 control-label">Xác nhận mật khẩu:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="@nameof(Model.ConfirmPassword)" class="form-control" value="@Model.ConfirmPassword">
+                </div>
+                @Html.ValidationMessage(nameof(Model.ConfirmPassword), new { @style = "color: #e74c3c" })
+            </div>
+                <div class="col-xs-8">             
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                    </div>
+                </div>
+            </form>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

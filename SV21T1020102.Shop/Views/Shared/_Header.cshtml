@@ -1,0 +1,60 @@
+﻿<header id="header">
+	<!--header-->
+	<div class="header-middle">
+		<!--header-middle-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+				
+						
+						<div class="mainmenu pull-left">
+						<ul class="nav navbar-nav collapse navbar-collapse">
+							<li><a href="~/Product">PDK SHOP</a></li>
+							<li class="dropdown">
+								<a href="#">Shop <i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="~/Product">Products</a></li>
+									<li><a href="~/Order">Cart</a></li>																
+								</ul>
+							</li>
+							
+						</ul>
+					</div>
+					
+					<div class="mainmenu pull-right">
+						<ul class="nav navbar-nav collapse navbar-collapse">
+							<!-- Dropdown Account -->
+							@if (User.Identity.IsAuthenticated)
+							{
+								<li class="dropdown">
+									<a href="#">Account <i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+
+										<li><a href="~/Account/Info">Thông tin cá nhân</a></li>
+										<li><a href="~/Account/ChangePassword">Đổi mật khẩu</a></li>
+										<li><a href="~/Account/ChangeInfo">Thay đổi thông tin cá nhân</a></li>
+										<li><a href="~/Account/Logout">Đăng xuất</a></li>
+									</ul>
+								</li>
+							}
+							<li><a href="~/Order"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+							@if (!User.Identity.IsAuthenticated)
+							{
+								<li><a href="~/Account/Login"><i class="fa fa-lock"></i> Login</a></li>
+							}
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div><!--/header-middle-->
+</header><!--/header-->

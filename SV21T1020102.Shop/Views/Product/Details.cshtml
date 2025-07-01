@@ -1,0 +1,158 @@
+﻿@model SV21T1020102.DomainModels.Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+}
+
+<section>
+    <div class="container">
+        <div id="notification" style="display: none; padding: 10px; margin: 10px 0; border-radius: 5px; text-align: center; line-height: 1.5;"></div>
+        <div class="row">
+            <!-- Sidebar: Category -->
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Thông tin sản phẩm</h3>
+                        </div>
+                        <!-- Table for Product Attributes -->
+                        <div class="panel-body">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th><strong>Thông số</strong></th>
+                                        <th><strong>Giá trị</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in SV21T1020102.BusineesLayers.ProductDataService.ListProductAttributes(Model.ProductId))
+                                    {
+                                        <tr>
+                                            <td><strong>@item.AttributeName</strong></td>
+                                            <td>@item.AttributeValue</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>         
+            </div>
+           
+            <!-- Product Details -->
+            <div class="col-sm-9">
+                <div class="product-details">
+                    <form class="frmAddToCart" action="~/Order/AddToCart" method="post" style="background-color:#fff; border:1px solid #ccc; margin:5px 0px 5px 0px; padding:5px;">
+                        <input type="hidden" name="@nameof(Model.ProductId)" value="@Model.ProductId" />
+                        <input type="hidden" name="@nameof(Model.Photo)" value="@Model.Photo" />
+                        <input type="hidden" name="@nameof(Model.ProductName)" value="@Model.ProductName" />
+                        <input type="hidden" name="SalePrice" value="@Model.Price" />
+                        <input type="hidden" name="@nameof(Model.Unit)" value="@Model.Unit"/>
+                       
+                        <div class="row">
+                            <!-- Product Image and Carousel -->
+                            <div class="col-sm-5">
+                                <div class="view-product">
+                                    <img src="http://localhost:18308/images/Product/@(string.IsNullOrEmpty(Model.Photo) ? "nophoto.png" : Model.Photo)" alt="Product Image" class="img-fluid" />
+                                </div>
+                                <div class="image-container">
+                                     @foreach (var item in SV21T1020102.BusineesLayers.ProductDataService.ListProductPhotos(Model.ProductId))
+                                    {
+                                        <a href="#">
+                                            <img src="http://localhost:18308/images/Product/ProductPhoto/@(string.IsNullOrEmpty(item.Photo) ? "nophoto.png" : item.Photo)" alt="" class="img-fluid" style="width:100px ; height: 100px; object-fit: cover;">
+                                        </a>
+
+                                    }
+                                   
+                                </div> 
+                            </div>
+
+                            <!-- Product Information -->
+                            <div class="col-sm-7">
+                                <div class="product-information">
+                                    <h2>@Model.ProductName</h2>
+                                    <span class="product-price">
+                                        <span>Giá: @Model.Price.ToString("N0") VND </span>
+                                    </span>
+                                    <p><strong>Đơn vị tính:</strong> @Model.Unit</p>
+
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity:</label>
+                                        <input type="number" class="form-control" value="1" min="1" name="Quantity" />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </form>
+
+                    <!-- Product Attributes -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+<script>
+          $(".frmAddToCart").submit(function (e) {
+        e.preventDefault();
+
+        var url = $(this).attr("action");
+        var method = $(this).attr("method");
+        var data = $(this).serialize();
+
+        $.ajax({
+            url: url,
+            type: method,
+            data: data,
+            success: function (response) {
+                var notification = $("#notification");
+                if (response.status === "success") {
+                    notification
+                            .text(response.message)
+                        .css({
+                            display: "block",
+                            backgroundColor: "#d4edda",
+                            color: "#155724",
+                            border: "1px solid #c3e6cb"
+                        });
+                } else {
+                    notification
+                        .text(response.message)
+                        .css({
+                            display: "block",
+                            backgroundColor: "#f8d7da",
+                            color: "#721c24",
+                            border: "1px solid #f5c6cb"
+                        });
+                }
+
+                
+                setTimeout(function () {
+                    notification.fadeOut();
+                }, 1500);
+            },
+            error: function () {
+                var notification = $("#notification");
+                notification
+                    .text("Đã xảy ra lỗi. Vui lòng thử lại!")
+                    .css({
+                        display: "block",
+                        backgroundColor: "#f8d7da",
+                        color: "#721c24",
+                        border: "1px solid #f5c6cb"
+                    });
+
+               
+                setTimeout(function () {
+                    notification.fadeOut();
+                    }, 1500);
+            }
+        });
+    });
+</script>
+}

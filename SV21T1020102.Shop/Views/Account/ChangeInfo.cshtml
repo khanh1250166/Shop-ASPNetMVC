@@ -1,0 +1,116 @@
+﻿@model SV21T1020102.DomainModels.Customer
+@{
+    ViewBag.Title = "Đổi thông tin cá nhân";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tài khoản</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .account-management {
+            margin: 50px auto;
+            max-width: 600px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .account-management h3 {
+                text-align: center;
+                margin-bottom: 30px;
+                font-weight: bold;
+            }
+
+        .btn-primary {
+            background-color: #0275d8;
+            border-color: #0275d8;
+        }
+
+            .btn-primary:hover {
+                background-color: #025aa5;
+                border-color: #025aa5;
+            }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .user-info p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .user-info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container account-management">
+        <h3>Thay đổi thông tin cá nhân</h3>
+
+
+        <!-- Tab Đăng nhập -->
+        @{
+            var userData = User.GetUserData();
+            <form action="~/Account/ChangeInfo" method="post" class="form-horizontal" style="margin-top: 20px;">
+                <input type="hidden" name="email" class="form-control" value="@userData.UserName"/>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">Họ và Tên:</label>
+                    <div class="col-sm-9">
+                        <input type="text"  name="CustomerName" class="form-control" value="@userData.CustomerName">
+                    </div>
+                    @Html.ValidationMessage(nameof(userData.CustomerName), new { @style = "color: #e74c3c" })
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">Tên giao dịch:</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="ContactName" class="form-control" value="@userData.ContactName">
+                    </div>
+                    @Html.ValidationMessage(nameof(userData.ContactName),new { @style = "color: #e74c3c" })
+                </div>
+               
+                <div class="form-group">
+                    <label for="phone" class="col-sm-3 control-label">Số điện thoại:</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Phone" name="phone" class="form-control" value="@userData.Phone">
+                    </div>
+                    @Html.ValidationMessage(nameof(userData.Phone), new { @style = "color: #e74c3c" })
+                </div>
+
+               
+
+                <div class="form-group">
+                    <label for="address" class="col-sm-3 control-label">Địa chỉ:</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="Address" name="address" class="form-control" value="@userData.Address">
+                    </div>
+                    @Html.ValidationMessage(nameof(userData.Address), new { @style = "color: #e74c3c" })
+                </div>
+                <div class="col-xs-8">
+                    @Html.ValidationMessage("Error", new { @style = "color: #e74c3c" })
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Cập Nhật Thông Tin</button>
+                    </div>
+                </div>
+            </form>
+       }
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

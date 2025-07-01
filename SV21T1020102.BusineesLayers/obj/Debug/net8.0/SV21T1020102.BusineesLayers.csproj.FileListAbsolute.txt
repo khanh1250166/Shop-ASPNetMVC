@@ -1,0 +1,17 @@
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.BusineesLayers.deps.json
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.BusineesLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.BusineesLayers.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.DataLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.DomainModels.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.DataLayers.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\bin\Debug\net8.0\SV21T1020102.DomainModels.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.csproj.AssemblyReference.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.AssemblyInfoInputs.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.AssemblyInfo.cs
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.csproj.CoreCompileInputs.cache
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T102.0F17B450.Up2Date
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\refint\SV21T1020102.BusineesLayers.dll
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\SV21T1020102.BusineesLayers.pdb
+D:\LapTrinhWeb\SV21T1020102\SV21T1020102.BusineesLayers\obj\Debug\net8.0\ref\SV21T1020102.BusineesLayers.dll

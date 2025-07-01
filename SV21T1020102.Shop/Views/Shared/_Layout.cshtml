@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PDK SHOP">
+    <meta name="author" content="Your Name">
+    <title>PDK SHOP - @ViewBag.Title</title>
+
+    <!-- Stylesheets -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/css/price-range.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- Compatibility for older IE browsers -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <style>
+        .image-container {
+            display: flex; /* Dùng Flexbox để xếp ảnh theo hàng */
+            overflow-x: auto; /* Cho phép cuộn ngang khi quá nhiều ảnh */
+            gap: 10px; /* Khoảng cách giữa các ảnh */
+            padding: 10px;
+        }
+
+            /* Thiết lập cho mỗi ảnh */
+            .image-container img {
+                height: 200px; /* Chiều cao ảnh */
+                object-fit: cover; /* Đảm bảo ảnh không bị méo */
+            }
+        /* Màu chữ cam và viền cam cho các liên kết trong phân trang */
+        .pagination li a {
+            color: #f57c00; /* Màu chữ cam */
+            border: 1px solid #f57c00; /* Viền cam */
+        }
+
+        /* Khi trang hiện tại (active), có viền cam, chữ trắng và không có nền */
+        .pagination li.active a {
+            background-color: #f57c00; /* Không có nền (hoặc nền trong suốt) */
+            color: white; /* Chữ trắng */
+            border: 1px solid #f57c00; /* Viền cam */
+        }
+            color: white;
+        /* Viền cam cho trang hiện tại */
+        .pagination li.active {
+            border: 1px solid #f57c00; /* Viền cam cho trang hiện tại */
+        }
+    </style>
+    <!-- Wrapper for layout -->
+    <div class="container-fluid d-flex flex-column min-vh-100">
+        <!-- Header Partial -->
+        <header>
+            @await Html.PartialAsync("_Header")
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="flex-grow-1">
+            <section id="slider">
+                <!-- Add your slider content here -->
+            </section>
+
+            <section>
+                @RenderBody()
+            </section>
+        </main>
+
+        <!-- Footer Partial -->
+        <footer>
+            @await Html.PartialAsync("_Footer")
+        </footer>
+    </div>
+
+    <!-- JavaScript Files -->
+    <!-- jQuery (Keep only one version) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Keep only this one -->
+    <!-- InputMask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/price-range.js"></script>
+    <script src="~/js/jquery.prettyPhoto.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

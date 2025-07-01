@@ -1,0 +1,109 @@
+﻿@model SV21T1020102.Shop.Models.PaginationInput
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    var userData = User.GetUserData();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Tài Khoản</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #f57c00;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .btn-custom {
+            background-color: #f57c00;
+            color: #fff;
+            border: none;
+        }
+
+            .btn-custom:hover {
+                background-color: #e64a19;
+            }
+
+        table th {
+            background-color: #f57c00;
+            color: white;
+            text-align: center;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        table tbody tr td {
+            color: #757575;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Thông tin tài khoản -->
+            @* <div class="col-md-4">
+                <div class="section-title">THÔNG TIN TÀI KHOẢN</div>
+                <p>Xin chào, <span style="color: #f57c00;">@userData.CustomerName</span></p>
+                <div class="section-title">THÔNG TIN KHÁCH HÀNG</div>
+                <div class="info-item"><i class="glyphicon glyphicon-user"></i> <strong>Họ tên:</strong> @userData.CustomerName</div>
+                <div class="info-item"><i class="glyphicon glyphicon-earphone"></i> <strong>Số ĐT:</strong> @userData.Phone</div>
+                <div class="info-item"><i class="glyphicon glyphicon-map-marker"></i> <strong>Địa chỉ:</strong> @userData.Address</div>
+            </div> *@
+
+            <form id="frmSearchInput" action="~/Account/Search" method="get">            
+                <input type="hidden" name="@nameof(Model.PageSize)" value="@Model.PageSize" />
+            </form>
+            <!-- Đơn hàng -->
+            <div class="searchOrderResult">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+            function doSearch(page) {
+                var action = $("#frmSearchInput").prop("action");
+                var method = $("#frmSearchInput").prop("method");
+
+                $.ajax({
+                    url: action,
+                    type: method,
+                    data: { page: page, pageSize: @Model.PageSize  },  // Chỉ gửi trang để phân trang
+                    success: function (data) {
+                        // Cập nhật kết quả tìm kiếm (ở đây chỉ có bảng và phân trang)
+                        $(".searchOrderResult").html(data);
+                    },
+                    error: function () {
+                        alert('Có lỗi xảy ra khi tải dữ liệu!');
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                // Tải trang đầu tiên khi trang được tải
+                doSearch(@Model.Page);
+            });
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿@{
+	ViewBag.Title = "Giỏ hàng";
+	var userData =User.GetUserData();
+}
+<section id="do_action">
+
+	<div class="container center-block " style="height:430px">
+		<div id="shoppingCart" class="table-responsive">
+		</div>
+		<form id="frmOrderInit"action="~/Order/Init" method="post" class="form-horizontal">		
+			<h4>Thông tin về khách hàng và địa chỉ giao hàng</h4>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Tỉnh/thành:</label>
+				<div class="col-sm-10">
+					<select class="form-control select2" name="deliveryProvince">
+						<option value="0">-- Chọn tỉnh/thành --</option>
+						@foreach (var item in SV21T1020102.BusineesLayers.CommonDataService.ListOfProvinces())
+						{
+							<option value="@item.ProvinceName">@item.ProvinceName</option>
+						}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Địa chỉ nhận hàng:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="deliveryAddress" value="" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-sm-10">
+					<span id="error-message" style="color:red"></span>
+
+				</div>
+
+			</div>
+			<div class="form-group">
+				@if (User.Identity.IsAuthenticated) {
+					<div class="col-md-12 text-right">
+						<button type="submit" class="btn btn-sm btn-primary">
+							<i class="fa fa-plus-circle"></i> Lập đơn hàng
+						</button>
+					</div>
+				}
+				else
+				{
+					<div class="col-md-12 text-right">
+						<a href="~/Account/Login" class="btn btn-sm btn-primary">
+							<i class="fa fa-plus-circle"></i> Lập đơn hàng
+					</a>
+					</div>
+				
+				}
+			</div>
+		</form>
+	</div>
+</section>
+@section scripts {
+	<script>
+		$(document).ready(function () {
+            // Gọi hiển thị giỏ hàng khi trang tải
+            showShoppingCart(); 
+
+            // Xử lý submit form
+            $("#frmOrderInit").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).prop("action"),
+                    type: $(this).prop("method"),
+                    data: $(this).serializeArray(),
+                    success: function (result) {
+                        if (isNaN(result)) {
+                         
+                            $("#error-message").html(result);
+                        } else {
+                            // Điều hướng đến trang chi tiết đơn hàng
+                            window.location.href = "/Product" ;
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý khi có lỗi xảy ra trong AJAX
+                        $("#error-message").html("Đã xảy ra lỗi, vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+		function showShoppingCart()
+		{
+			$.ajax({
+				url: "/Order/ShoppingCart",
+				type: 'GET',
+				success: function (data) {
+					$("#shoppingCart").html(data)
+				}
+			});
+		}
+		
+		$(document).ready(function () {
+			showShoppingCart(); // Gọi hiển thị giỏ hàng khi trang tải
+		});
+	</script>
+}
